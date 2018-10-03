@@ -1,0 +1,47 @@
+@mixin clearfix {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin vertical-horizontal-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+//MEDIA QUERY MANAGER
+/*
+0-600px :       Telefon
+600-900px :     Tablet portrait mode
+900-1200px :    Tablet landscape
+[1200-1800] :   Podstawowe sty;e
+1800px + :      Duże ekrany
+
+
+$breakepoint opcje:
+-phone
+-tab-port
+-tab-land
+-big-desctop
+
+1em = 16px : najlepsze do media-query są em'y , 16px to podstawowa wartość czcionki przeglądarki
+*/
+
+@mixin respond($breakepoint) {
+    @if $breakepoint == phone {
+        @media (max-width: 37.5em) { @content }; //600px
+    }
+    @if $breakepoint == tab-port {
+        @media (max-width: 56.25em) { @content }; //900px
+    }
+    @if $breakepoint == tab-land {
+        @media (max-width: 75em) { @content }; //1200px
+    }
+    @if $breakepoint == big-desctop {
+        @media (min-width: 112.5em) { @content }; //1800px
+    }
+}
